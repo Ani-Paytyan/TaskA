@@ -3,7 +3,6 @@
 <link rel="stylesheet" href="{{ url('css/index.css')}}">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <h1>Օգտատերերի աղյուսակ</h1>
-
 <div class="table-responsive flexcroll">
     <a class="btn btn-success" href="{{ 'create'}}"> Ավելացնել</a>
     <table class="table table-bordered flexcroll">
@@ -12,7 +11,7 @@
                 <th>Անուն Ազգանուն</th>
                 <th>Էլ․ հասցե</th>
                 <th>Հեռախոսահամար</th>
-                <th>Գաղտնաբառ</th>
+{{--                <th>Գաղտնաբառ</th>--}}
                 <th>Ակտիվ</th>
                 <th>Դեր</th>
                 <th>Action</th>
@@ -25,7 +24,7 @@
             <td><?= $user->name; ?></td>
             <td><?= $user->email; ?></td>
             <td><?= $user->phone; ?></td>
-            <td><?= $user->password; ?></td>
+{{--            <td><?= $user->password; ?></td>--}}
             <td><?= $user->active == 1? 'Ակտիվ է' : 'Ակտիվ չէ'; ?></td>
             <td><?= $user->role; ?></td>
             <td>
@@ -40,9 +39,7 @@
 </div>
 
 <script>
-
     $(document).ready(function(){
-
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -50,7 +47,6 @@
         });
         $(".delete").click(function(e) {
             if (confirm("Վստահ եք, որ ցանկանում եք ջնել") == true) {
-
                 var id = $(this).data('id');
                 e.preventDefault();
                 $.ajax({
@@ -67,5 +63,4 @@
             }
         });
     });
-
 </script>

@@ -1,5 +1,8 @@
 <link rel="stylesheet" href="{{ url('css/create.css')}}">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+      rel="stylesheet" type="text/css" />
+<meta name="viewport" content="width=device-
+width, initial-scale=1.0">
 <meta name="csrf-token" content="{{ csrf_token() }}">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="{{ url('js/myValidation.js')}}" type="text/javascript"></script>
@@ -23,8 +26,8 @@
                     <input type="number" name="phone" class="phone forEmptyError" placeholder="Մուտքագրել հեռախոսահամար">
                 </div>
                 <div class="input-box">
-                    <span class="details">Գաղտնաբառ</span>
-                    <input type="text" name="password" class="pass forEmptyError" placeholder="Մուտքագրել գաղտնաբառ">
+                    <span id="toggle_pwd" class="fa fa-fw fa-eye field_icon details">Գաղտնաբառ</span>
+                    <input type="password" id="txtPassword" name="password" class="pass forEmptyError" placeholder="Մուտքագրել գաղտնաբառ">
                 </div>
                 <div class="input-box">
                     <span class="details">Դեր</span>
@@ -37,7 +40,7 @@
                 </div>
                 <div class="input-box">
                     <span class="details">Հաստատել գաղտնաբառը</span>
-                    <input type="text" class="repeatPass forEmptyError" placeholder="Հաստատել գաղտնաբառը">
+                    <input type="password" class="repeatPass forEmptyError" placeholder="Հաստատել գաղտնաբառը">
                 </div>
             </div>
             <div class="gender-details">
@@ -45,7 +48,7 @@
                 <input type="checkbox" name="active" id="switch" value="8"><label for="switch">Toggle</label>
             </div>
             <div class="button">
-                <input type="button" id = "createUser" value="Register">
+                <input type="button" id="createUser" value="Register">
             </div>
         </form>
     </div>
@@ -65,7 +68,6 @@
                 $("#switch").addClass('on');
                 $("#switch").val(1);
             }
-
         });
         $.ajaxSetup({
             headers: {
@@ -189,4 +191,12 @@
         });
     });
 
+    //password eye
+    $(function () {
+        $("#toggle_pwd").click(function () {
+            $(this).toggleClass("fa-eye fa-eye-slash");
+            var type = $(this).hasClass("fa-eye-slash") ? "text" : "password";
+            $("#txtPassword").attr("type", type);
+        });
+    });
 </script>

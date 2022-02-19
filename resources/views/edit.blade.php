@@ -1,19 +1,16 @@
 
 <!---<title> Responsive Registration Form | CodingLab </title>--->
 <link rel="stylesheet" href="{{ url('css/create.css')}}">
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+      rel="stylesheet" type="text/css" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="csrf-token" content="{{ csrf_token() }}">
-
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="{{ url('js/myValidation.js')}}" type="text/javascript"></script>
 
 <div class="container">
-    <a href="{{ 'index'}}"> Հետ գնալ</a>
-
     <div class="title">Ավելացնել նոր օգտատեր</div>
     <div class="content">
-        {{--        <p class="error-text emptyError displayNone">Lրացնել բոլոր դաշտերը</p>--}}
-        {{--        <p class="error-text lengthError displayNone">Անուն ազգանուն/ էլ․հասցե առավելագույն նիշերի քանակը 50 է</p>--}}
         <p class="error-text error-text-common displayNone"></p>
         <form action="" id="updateNewUser" method="put">
             <div class="user-details">
@@ -33,13 +30,11 @@
                         placeholder="Մուտքագրել հեռախոսահամար">
                 </div>
                 <div class="input-box">
-                    <span class="details">Գաղտնաբառ</span>
-                    <input type="text" name="password" class="pass forEmptyError" value="{{$user->password}}"
-                        placeholder="Մուտքագրել գաղտնաբառ">
+                    <span id="toggle_pwd" class="fa fa-fw fa-eye field_icon details">Գաղտնաբառ</span>
+                    <input type="password" id="txtPassword" name="password" class="pass forEmptyError" placeholder="Մուտքագրել գաղտնաբառ">
                 </div>
                 <div class="input-box">
                     <span class="details">Դեր</span>
-
                     <select class="input-box5 forEmptyError" name="role" id="SubjectsList" >
                         <option class="details"  value="0">Մուտքագրել դեր</option>
                         <option class="details" value="admin" {{$user->role == 'admin'? 'selected': ''}}>Admin</option>
@@ -49,7 +44,7 @@
                 </div>
                 <div class="input-box">
                     <span class="details">Հաստատել գաղտնաբառը</span>
-                    <input type="text" class="repeatPass forEmptyError" placeholder="Հաստատել գաղտնաբառը">
+                    <input type="password" class="repeatPass forEmptyError" placeholder="Հաստատել գաղտնաբառը">
                 </div>
             </div>
             <div class="gender-details">
@@ -64,9 +59,7 @@
 </div>
 <script type="application/javascript">
     $(document).ready(function(){
-        var role = '';
         var active = '';
-
         $("#switch").click(function () {
             if($("#switch").hasClass('on')) {
                 $("#switch").removeClass('on');
@@ -115,15 +108,6 @@
                 check = false;
                 return false;
             }
-
-            // if ($("#SubjectsList option:selected").text().length < 1) {
-            //     $("#SubjectsList").addClass('error');
-            //     $('.error-text-common').removeClass('displayNone');
-            //     $('.error-text-common').text('Հեռախոսահամարի առավելագույն նիշերի քանակը 20 է');
-            //     check = false;
-            //     return false;
-            // }
-
             //empty validation
             let forCheckElementsContainer = document.querySelectorAll('input.forEmptyError');
             $('.emptyError').addClass('displayNone');
@@ -212,4 +196,12 @@
         });
     });
 
+    //password eye
+    $(function () {
+        $("#toggle_pwd").click(function () {
+            $(this).toggleClass("fa-eye fa-eye-slash");
+            var type = $(this).hasClass("fa-eye-slash") ? "text" : "password";
+            $("#txtPassword").attr("type", type);
+        });
+    });
 </script>

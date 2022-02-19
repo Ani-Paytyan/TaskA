@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-
     public function index()
     {
         $data['userList'] = User::getUserList();
@@ -42,6 +41,9 @@ class UserController extends Controller
         }
     }
 
+    /**
+     * @param Request $request
+     */
     public function destroy(Request $request)
     {
         $user = User::find($request->id);

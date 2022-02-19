@@ -226,6 +226,16 @@ label:active:after {
 .error-text {
     color: red;
 }
-.displayNone{
+.displayNone {
     display: none;
+
+}
+input, input[type=password]
+{
+    width: 150px;
+    height: 20px;
+}
+#toggle_pwd
+{
+    cursor: pointer;
 }
